@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.env
+.env.*
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# OS generated files
+.DS_Store
+.Trashes
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+
+# Qdrant
+qdrant_data/
