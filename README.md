@@ -1,4 +1,4 @@
-# BajajRx v2
+# 
 
 BajajRx v2 (Bolt) is an intelligent document query-retrieval system designed to provide quick and accurate answers to questions based on provided documents. It leverages vector databases for efficient similarity search and large language models for generating coherent responses.
 
