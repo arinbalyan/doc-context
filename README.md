@@ -1,8 +1,10 @@
+# RAG-based Question Answering Webhook
 
+This project implements a webhook that uses a Retrieval-Augmented Generation (RAG) architecture to answer questions based on a provided document.
 
 ## Features
 
-*   **Document Processing:** Ingests documents (currently supports PDF via URL) and processes them into searchable chunks.
+*   **Document Processing:** Ingests documents from a URL and processes them into searchable chunks.
 *   **Semantic Search:** Uses sentence embeddings to perform semantic searches on document chunks, retrieving the most relevant information.
 *   **AI-Powered Question Answering:** Utilizes a Large Language Model (LLM) to generate answers based on the retrieved context from documents.
 *   **Scalable Backend:** Built with FastAPI for a robust and performant API.
@@ -16,8 +18,7 @@
     *   FastAPI
     *   Qdrant (Vector Database)
     *   Sentence Transformers (for embeddings)
-    *   OpenAI / OpenRouter (for LLM integration)
-    *   Supabase (for potential future database needs, currently used for authentication)
+    *   OpenRouter (for LLM integration)
     *   Pydantic (for data validation)
 *   **Frontend:**
     *   HTML (basic `index.html` for demonstration)
@@ -30,8 +31,29 @@ Before you begin, ensure you have the following installed:
 *   [pip](https://pip.pypa.io/en/stable/installation/) (Python package installer)
 *   [Git](https://git-scm.com/downloads)
 
+## Getting Started
 
-  **Set up environment variables:**
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/arinbalyan/doc-context.git
+    cd doc-context
+    ```
+
+2.  **Create and activate a virtual environment:**
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3.  **Install dependencies:**
+
+    ```bash
+    pip install -r backend/requirements.txt
+    ```
+
+4.  **Set up environment variables:**
 
     Create a `.env` file in the `backend/` directory with the following content. Replace the placeholder values with your actual API keys and URLs.
 
@@ -44,7 +66,7 @@ Before you begin, ensure you have the following installed:
     API_BEARER_TOKEN=your_secret_api_bearer_token
     QDRANT_COLLECTION_NAME=hackrx_documents
     ```
-    *   `SUPABASE_URL` and `SUPABASE_KEY`: Obtain these from your Supabase project settings.
+
     *   `QDRANT_URL` and `QDRANT_API_KEY`: Obtain these from your Qdrant Cloud dashboard.
     *   `OPENROUTER_API_KEY`: Obtain this from your OpenRouter.ai account.
     *   `API_BEARER_TOKEN`: A secret token of your choice for authenticating API requests.
@@ -59,11 +81,12 @@ Before you begin, ensure you have the following installed:
     cd backend
     uvicorn app.main:app --reload
     ```
-    The API will be accessible at `http://127.0.0.1:8000`. The `--reload` flag enables auto-reloading on code changes.
+
+    The API will be accessible at `http://127.0.0.1:8000`.
 
 2.  **Accessing the Frontend (Basic):**
 
-    The `frontend/index.html` file provides a very basic interface. You can open this file directly in your web browser to see a placeholder. For a full-fledged frontend, you would typically serve it using a web server or a framework like React/Vue/Angular.
+    The `frontend/index.html` file provides a very basic interface. You can open this file directly in your web browser.
 
 ## API Usage
 
@@ -72,7 +95,7 @@ The primary API endpoint is `/api/v1/hackrx/run`.
 *   **Endpoint:** `POST /api/v1/hackrx/run`
 *   **Content-Type:** `application/json`
 *   **Accept:** `application/json`
-*   **Authentication:** `Authorization: Bearer <your_secret_api_bearer_token>` (replace `<your_secret_api_bearer_token>` with the value from your `.env` file).
+*   **Authentication:** `Authorization: Bearer <your_secret_api_bearer_token>`
 
 ### Request Body Example:
 
@@ -87,7 +110,7 @@ The primary API endpoint is `/api/v1/hackrx/run`.
 }
 ```
 
-*   `documents`: A URL to the document (e.g., PDF) to be processed.
+*   `documents`: A URL to the document to be processed.
 *   `questions`: A list of questions to be answered based on the document.
 
 ### Response Body Example:
@@ -95,9 +118,9 @@ The primary API endpoint is `/api/v1/hackrx/run`.
 ```json
 {
     "answers": [
-        "The grace period for premium payment under the National Parivar Mediclaim Plus Policy is 30 days for yearly premium payment mode and 15 days for half-yearly/quarterly/monthly premium payment mode.",
-        "The waiting period for pre-existing diseases (PED) to be covered is 48 months from the date of inception of the first policy.",
-        "Yes, this policy covers maternity expenses after a waiting period of 24 months from the date of inception of the first policy. It covers delivery expenses (including caesarean section) and lawful medical termination of pregnancy."
+        "The grace period for premium payment is 30 days.",
+        "The waiting period for pre-existing diseases is 48 months.",
+        "Yes, maternity expenses are covered after a waiting period of 24 months."
     ]
 }
 ```
@@ -112,13 +135,12 @@ The primary API endpoint is `/api/v1/hackrx/run`.
 │   ├── app/
 │   │   ├── api/             # API endpoints
 │   │   ├── core/            # Configuration and security
-│   │   ├── db/              # Database clients (Qdrant, Supabase)
+│   │   ├── db/              # Database clients (Qdrant)
 │   │   ├── models/          # Pydantic schemas
-│   │   └── services/        # Business logic (document processing, query answering)
-│   ├── .env                 # Environment variables (local)
-│   ├── .env.example         # Example environment variables
+│   │   └── services/        # Business logic
+│   ├── .env                 # Environment variables
 │   └── requirements.txt     # Python dependencies
-├── documents/               # Placeholder for documents (e.g., .gitkeep)
+├── documents/               # Placeholder for documents
 ├── frontend/
 │   └── index.html           # Basic frontend HTML
 ├── venv/                    # Python virtual environment
