@@ -1,6 +1,4 @@
-# BajajRx v2 (Bolt)
 
-BajajRx v2 (Bolt) is an intelligent document query-retrieval system designed to provide quick and accurate answers to questions based on provided documents. It leverages vector databases for efficient similarity search and large language models for generating coherent responses.
 
 ## Features
 
@@ -32,32 +30,8 @@ Before you begin, ensure you have the following installed:
 *   [pip](https://pip.pypa.io/en/stable/installation/) (Python package installer)
 *   [Git](https://git-scm.com/downloads)
 
-## Setup Instructions
 
-1.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/your-username/bajajrx-v2-bolt.git
-    cd bajajrx-v2-bolt
-    ```
-
-2.  **Create and activate a virtual environment:**
-
-    ```bash
-    python -m venv venv
-    # On Windows
-    .\venv\Scripts\activate
-    # On macOS/Linux
-    source venv/bin/activate
-    ```
-
-3.  **Install backend dependencies:**
-
-    ```bash
-    pip install -r backend/requirements.txt
-    ```
-
-4.  **Set up environment variables:**
+  **Set up environment variables:**
 
     Create a `.env` file in the `backend/` directory with the following content. Replace the placeholder values with your actual API keys and URLs.
 
