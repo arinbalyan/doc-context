@@ -27,12 +27,8 @@ def get_answer(question: str) -> str:
         model="google/gemma-3n-e2b-it:free",
         messages=[
             {
-                "role": "system",
-                "content": "You are an intelligent query-retrieval system. Answer the user's question based on the provided context. The context is extracted from a document.",
-            },
-            {
                 "role": "user",
-                "content": f"Context:\n{context}\n\nQuestion: {question}",
+                "content": f"You are an intelligent query-retrieval system. Answer the user's question based on the provided context. The context is extracted from a document.\n\nContext:\n{context}\n\nQuestion: {question}",
             },
         ],
     )
