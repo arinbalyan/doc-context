@@ -8,8 +8,8 @@ llm_client = OpenAI(
     api_key=settings.OPENROUTER_API_KEY,
 )
 
-qdrant_client = QdrantClient(url=settings.QDRANT_URL, api_key=settings.QDRANT_API_KEY)
-embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
+qdrant_client = QdrantClient(url=settings.QDRANT_URL, api_key=settings.QDRANT_API_KEY, timeout=30)
+embedding_model = SentenceTransformer('multi-qa-MiniLM-L6-cos-v1')
 
 
 def get_answer(question: str) -> str:
